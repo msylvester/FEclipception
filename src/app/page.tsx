@@ -28,41 +28,43 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Video Processing App</h1>
+    <div className="min-h-screen bg-gradient-to-r from-slate-800 to-slate-900 p-4">
+      <div className="container mx-auto">
+        <div className="flex justify-between items-center py-6">
+          <h1 className="text-2xl font-bold text-white">Video Processing App</h1>
+          <h1 className="text-2xl font-bold text-white">TESTER FEB</h1>
+          {isLoggedIn && (
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-300">
+                Welcome, {user?.name || 'User'}
+              </span>
+              <LogoutButton />
+            </div>
+          )}
+        </div>
         
-        {isLoggedIn && (
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-600">
-              Welcome, {user?.name || 'User'}
-            </span>
-            <LogoutButton />
+        {isLoggedIn ? (
+          <div className="w-full max-w-4xl mx-auto bg-slate-800 rounded-lg p-8 shadow-lg text-white">
+            <h2 className="text-2xl font-semibold mb-4">Welcome to the Video Processing App</h2>
+            <p className="text-gray-300 mb-4">
+              You are now logged in. This is where the video processing functionality would be displayed.
+            </p>
+            <p className="text-gray-300">
+              The video processing components will be implemented in the next phase.
+            </p>
+          </div>
+        ) : (
+          <div className="w-full max-w-md mx-auto bg-slate-800 rounded-lg p-8 shadow-lg text-center">
+            <h2 className="text-2xl font-semibold mb-4 text-white">Please Login</h2>
+            <p className="text-gray-300 mb-6">You need to be logged in to access the video processing tools.</p>
+            <Link href="/login">
+              <button className="px-4 py-3 rounded font-medium bg-blue-600 hover:bg-blue-700 text-white transition-colors">
+                Login
+              </button>
+            </Link>
           </div>
         )}
       </div>
-      
-      {isLoggedIn ? (
-        <div className="p-10 bg-slate-100 rounded-lg shadow-xl">
-          <h2 className="text-2xl font-semibold mb-4">Welcome to the Video Processing App</h2>
-          <p className="text-gray-600 mb-4">
-            You are now logged in. This is where the video processing functionality would be displayed.
-          </p>
-          <p className="text-gray-600">
-            The video processing components will be implemented in the next phase.
-          </p>
-        </div>
-      ) : (
-        <div className="flex flex-col items-center justify-center p-10 bg-slate-100 rounded-lg shadow-xl">
-          <h2 className="text-2xl font-semibold mb-4">Please Login</h2>
-          <p className="text-gray-600 mb-6">You need to be logged in to access the video processing tools.</p>
-          <Link href="/login">
-            <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white font-medium transition-colors">
-              Login
-            </button>
-          </Link>
-        </div>
-      )}
     </div>
   );
 }
